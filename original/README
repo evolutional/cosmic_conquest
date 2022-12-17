@@ -1,0 +1,29 @@
+This is version 1.035 is a final update to Cosmic Conquest that will
+be released before a major revision. It is mainly a bug fix version,
+although a few more features have been added, which are reflected in
+the documentation.
+
+Changes to be expected in Cosmic Conquest 2.00:
+
+	1. Code cleaned up considerably
+	2. Use of Lattice C
+	3. At least ONE worthwhile computer opponent
+	4. Hopefully a more interesting combat
+	5. Best of all, CC 2.00 will have graphics !
+	   All pictures for CC have already been painted by the excellent
+	   computer artist Guenther Kirsche, and I can assure that the
+	   quality is first rate. The only reason the graphics have not
+	   included yet is that I have to use my linkable IFF-Library
+	   which I have been using with my Lattice projects which
+	   demands that point 2 is done first and to that I just
+	   haven't come around yet.
+	6. No promises about when it will be released but I would guess
+	   by the fall of 1990 ( I just have to many other projects
+	   going in the moment !).
+
+		Carl Edman , 2/28/90
+
+PS:	As I currently study at the University of California, Irvine
+	everyone can reach me over Internet. The address is
+	eapu034@orion.oac.uci.edu . I will gladly answer any mail
+	or sourcecode sent to me.

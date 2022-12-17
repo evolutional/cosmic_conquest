@@ -1,0 +1,535 @@
+
+                             Cosmic Conquest
+                               Doc V1.0009
+
+              A interstellar multiplayer game of War and Peace
+
+PUBLIC DOMAIN NOTICE
+
+This program was placed in the public domain.  It may be freely copied
+for  non-profit  by  anyone as long as the original archive or all the
+unmodified  files  from  the archive are distributed in one directory.
+Anybody  may  modify  this for his personal use, but please don't give
+other  people  modified copies.  On the other hand I'd be delighted to
+have your modifications sent to me and to incorporate them in the main
+program  .   This  program is strictly public domain and not shareware
+and  as  I  don't depend on living on my programs and I wrote this for
+fun, I wish you to play it at no higher price.
+
+BEFORE START
+
+Make a "games" subdirectory in the same directory you placed the game.
+In this new directory all saved games are stored (Not necessary if you
+extracted the zoo archive using the x// option.).
+
+HOW TO PLAY
+
+The  aim of Cosmic Conquest is to be the sole remaining ruler over the
+complete  star  cluster of 16 stars.  Cosmic Conquest is always played
+with  four players which can be any combination of different human and
+computer  players.  After selecting "Start a new game" enter the names
+of  the  four  players.   To specify a computer player use as name,the
+name  of  the  computer algorithm and add some string to make the name
+unique.   There  are  four  supported  computer algorithms.  These are
+Klingon,  Romulan,  Berserker  and  Alien.   Acceptable  names are for
+example:  "romulan A" "Klingonian" "BerSERker Fred" Currently only the
+klingon  player  is  working  intelligently,the  others are in V1 only
+stumps.   To  specify  a  player  who  is  non-active already from the
+beginning  use  the  name  "dead".  All other names are interpreted as
+names  of  human  players.   After  having  entered the names the game
+starts and the players take turns at entering their commands.
+
+DISPLAYS
+
+A) Main map (Always displayed)
+
+This  map  is  automagicaly  displayed in the large window on the left
+hand  side of the screen.  Superimposed on a dot pattern all stars are
+displayed   as   capital  letters.   Stars  are  color  coded.   Stars
+completely controlled by one player are displayed in his color.  Stars
+on  which  several  players  control  planets are displayed in orange.
+Unknown  or uninhabited stars are displayed in white.  Stars displayed
+in  inverse  are  stars which already have been explored by you but on
+which  currently  there  is  no  information.   Beware  !  Information
+displayed about these stars may be out of date and no longer accurate.
+On this screen also all taskforces known to you are displayed as minor
+letters  in  the  color  of  their  empire.  Only taskforces in normal
+space(not  in hyperspace) are displayed.  Sometimes several taskforces
+will  be  at  one star and the display will become muddled.  To obtain
+exact  information  simply  examine the starsummary for this star.  To
+obtain a starsummary on an star click on it.  To obtain information on
+a  taskforce click on it.  If there are several taskforces at the star
+then a starsummary is displayed and you can select your taskforce from
+there.   To obtain a general overview about all stars simply press the
+left mouse button somewhere on the background pattern.
+
+B) Status Display (hit 'z' for status display)
+
+The  status  is displayed in middle window on the right.  To obtain it
+simply  press the right mouse button anywhere.  It gives your name and
+your techlevel.  This level starts at 100 and increases with research.
+What  types  of  ships  are available to you depends on the techlevel.
+The  pop-stat  show  the  number of millions of creatures of your race
+alive.This  includes  colonies  enslaved by other races.  The ind-stat
+gives  your  total industrial capacity.  It is the sum of the industry
+of  all planets you rule.  Below,the names of all other races and your
+attitude towards them (first) and their attitude towards you (second).
+This can be War, Peace or Alliance.
+
+C) Starsummary ('s' on the keyboard and hit return when asked
+                for planet)
+
+The  starsummary  is  displayed  in the middle of the 3 windows on the
+right  hand  side.   In  the  top  line the letter of the star and its
+coordinates are displayed.  In the four lines below information on the
+up  to 8 planets (numbered from 0 to 7) of the star is displayed.  The
+color of these entries is coded according to the color of the ruler of
+the  planet.   A  planet  displayed in inverse represents one on which
+valuable  ore  may be mined.The first 3-digit figure gives the maximum
+population  of  the  planet  in  millions.   The  second one gives the
+current  population  in millions.  If the planet is enslaved this stat
+is displayed in the color of the original ruler.  The third one is the
+current  industrial  level of the planet.  It describes what amount of
+ships  or  things may be build in a certain time on this planet.  This
+stat  may  never  go  above  population  number.  The final letter (or
+blank)  is  an abbreviation for the type of product being built on the
+planet.   Blank means nothing.  Minor letters stand for different ship
+types.   M  stands for Mining, R for Researching, I for Investing.  To
+obtain  further  information  on  a planet simply click on it.  In the
+four  lines  below  all  taskforces at this star are displayed for the
+four  players.   Taskforces  displayed in inverse are taskforces which
+haven't  yet  arrived at the star ,but of which you know that they are
+headed  there.   To  obtain  data on a taskforce click on it here.  To
+obtain  an  overview  over  all  taskforces of one player click on the
+appropriate  "Tf"  sign.   In  the  last  line the seven nearest stars
+together with their distances are displayed in order of proximity.  To
+obtain the summary of a star click on it or type 's' on the keyboard.
+
+D) Staroverview ( 's' on the keyboard and return when prompted
+                  for star)
+
+The  staroverview  is  displayed in the middle of the 3 windows on the
+right  hand  side.  All stars are color coded as in the main map.  For
+each  star  the  sum of all its planets, population maxima, population
+and industry is displayed.  Click on anywhere on the starfield or type
+'s'  on  the keyboard and hit return when asked for the star to obtain
+the staroverview.
+
+E) Taskforcesummary ( 't' on the keyboard and return when asked for a
+                      specific taskforce)
+
+The  taskforcesummary is displayed in the lower right hand window.  In
+the headline of the display the letter of the taskforce, its star, its
+empty  capacity  ,  its  speed  and  its  range  is displayed.  If the
+taskforce  has  arrived  at  a  star  only  the letter of this star is
+displayed.  If it is in hyperspace, the name of the star it is heading
+at,  and  the number of years it will still take it to arrive there is
+displayed.   The  first stat gives the sum of the sizes of the storage
+holds  of  all  ships  (including  carried  ships).  Carried Ships are
+disassembled.   That means that f.e.  a glitter which has a size of 20
+and  a  capacity  of  19 in practice only occupies one unit of storage
+space when carried.  Note also that size of the EMPTY storage holds in
+this taskforce is only displayed for your own taskforces.  For foreign
+taskforces (of which you don't know the interior) the maximum possible
+empty  space  is  calculated and displayed.  The speed is the speed of
+the  slowest  ship  in  the  taskforce ,that is not carried by another
+ship.   The  range is the range of the ship with the smallest range in
+the  taskforce,  that  is not being carried.  These two stats give the
+maximum  distance  between  stars  that  a  taskforce  may  hyperspace
+non-stop  and the distance it covers in each year.  In the body of the
+display  the  names  of all shiptypes in the taskforce appear.  If you
+have  information  about the interior of the ships (i.e.  it is one of
+your  taskforces) 2 figures are displayed at the end of the line.  The
+first  gives  the  number of free ships of this type in the taskforce,
+the  second the number of carried ships of this kind in the taskforce.
+On  the  other hand if it is a foreign taskforce you will only see the
+number  of  visible  ships  of  each kind.  To obtain a shipsummary, a
+summary  of the technical stats of one kind of ship, click on the name
+of  the  shiptype.   To obtain an overview about all the taskforces of
+the  player  (of which you know) in that this kind of ship is known to
+be, click on the number of ships.
+
+F) Taskforceoverview ('t' on the keyboard and return when asked for a
+                      specific taskforce)
+
+This  is  displayed  in  the  lower  right  hand  window.   All  known
+taskforces  are  displayed  including the star they are heading at (or
+are  at)  and  the number of years it will still take the taskforce to
+arrive  there.   To  obtain a taskforce summary click on the taskforce
+you wish to obtain information on.
+
+G) Shipoverview ('f' (=Fleet) )
+
+This  is  similar to taskforceoverview , but instead of displaying the
+star  each  taskforce is heading at, the number of all free(first) and
+carried(second)  ships  of one shiptype of each known taskforce of one
+player   is   displayed.    If   you  don't  know  what  is  inside  a
+taskforce(i.e.  it's not one of your taskforces) then only the visible
+ships  are  displayed  To  obtain  a  taskforce  summary  click on the
+taskforce you wish to obtain information on.
+
+H) Planetsummary (hit 's')
+
+Planetsummary  is  displayed  in  the lower right hand window.  In the
+headline  star  and  planet  are  displayed.   In  the second line the
+population  maximum  for  the  planet,  its current population and its
+industrial  level  are  shown.  The name of its displayed in the third
+line product.  In the next line the cost of the product( the number of
+industrial points needed to build it, e.g.  , to mine one point of ore
+has a cost of 15.  A planet with an industry of 60 produces 4 oreunits
+a  year.   A light cruiser costs 100,thus a planet with an industry of
+40  needs  2.5  years  to produce one.) is shown.  The number of years
+needed  to  produce one unit as well as the estimated time at that the
+next   unit  will  be  available  is  displayed.   To  obtain  further
+information on the ship click on its name.
+
+I) Shipsummary (hit 'f' and return when asked for player)
+
+Shipsummaries  are  displayed  in the lower right side window.  In the
+headline  the  name  of the shiptype is displayed.  In the second line
+the  size  of  the  ship  as well as its capacity is displayed.  These
+stats  are  important  for  how  many ships of a type another ship can
+carry inside its storage holds.  The hyperspeed stat gives the maximum
+speed of any taskforce in that such a ship is and is not carried.  The
+hyperrange  gives  the range of a taskforce in that such a ship is and
+is  not carried.  If either or both of these attributes is 0 then this
+shiptype  has  no hyperdrive and can't move by itself from one star to
+another  but must be carried by another ship.The attack stat gives the
+strength of the builtin weaponry of this shiptype.  No of attack gives
+the number of attacks of this strength such a ship may make each turn.
+Speed  determines  when such a ship makes its attack in a battle.  The
+lower  it  is  the  better.  Shields gives the power of the protective
+devices  of  the  ship.   A  shield  will  block an attack of the same
+strength  50  %  of  the time.  Techcost gives the price in industrial
+points  it  costs to build one such ship.  Techlevel gives the minimum
+techlevel a race has to have to be able to build such a ship.  If both
+of  these  attributes  are  displayed  in  inverse  the  ship  is  not
+available.   Below  these attributes several special abilities of some
+ships may be displayed:
+
+Starkill  = This ship is equipped with a special device which can make
+suns  go  supernovae.   All  planets  and  all  taskforces present are
+destroyed.    BEWARE   !!!    Very  dangerous  !   Only  for  absolute
+emergencies.
+
+One-Shot  =  This  is  a unmanned ship which is destroyed in its first
+attack.  For example:  Torpedoes.
+
+CataStart  =  Ships  with  this attribute can be ejected via catapults
+very  quickly  in  a  fight, if they are carried aboard ships with the
+catapult  equipment.   This  allows  attacking taskforces to have some
+carried ships attack immediately in the first turn of battle.
+
+Not  build  =  Ships  of  this type cannot be build using normal build
+commands.  For example:  Oreunits and Popunits.
+
+Catapult  =  Ships  with  this  ability  can  catapult  ships with the
+CataStart attribute.
+
+J) Help ('?' on the keyboard)
+
+The  help  screen  is  displayed if you at any time click in the upper
+right hand command window.  It shows all commands and their one letter
+abbreviations.
+
+All displays are always immediately updated to represent any change.If
+in  any display the sign oo(infinite) appears this represents a figure
+which  is  out  of  bounds.   It  is certainly larger than the maximum
+integer to be displayed in the given number on characters (for Example
+if  any  figure  greater  than  99  is  going  to  be displayed in a 2
+character field it is displayed as oo.).
+
+COMMANDS
+
+Commands  are  entered  in  the command window in the upper right hand
+corner.   In  contrast to display functions which are completely mouse
+driven  all commands are entered at the keyboard.  First enter the one
+letter  code for each command ,then you are queried for all parameters
+of  the  command  in  this  window.   In most cases, in which you have
+several  different  options you can scroll through them with the <-key
+and  the  >-key.   Press  return  to  select.   You  can also enter an
+identifying  letter  for  each option immediately.  When queried for a
+number  the  maximum  amount  is  displayed in brackets.  Press 0-9 to
+select  this  small quantity to select other numbers use the <-key and
+the  >-key.   To  select maximum press >-key and shift simultaneously.
+To   select  the  minimum  (usually  0)  press  the  <-key  and  shift
+simultaneously.
+
+G = Go on (Capital 'G' to prevent accidental end of turns)
+
+This  command  ends  your  turn  and allows the next player to get his
+turn.
+
+h = Hyperspace
+
+This  command  allows you to send taskforces from one star to another.
+You are queried first for the task and then for the destination.  This
+command  will  automatically  carry ships with insufficient range.  If
+this  isn't possible you will get an error message.  It also optimizes
+for speed.(Carries slower ships in faster if possible.)
+
+e = Emigrate
+
+If you rule a planet and the population is of your race, you can order
+some of your loyal subjects into large containers, where cold sleep is
+induced.   Into  each  of  these  containers  fit 1 million creatures.
+These containers are then fired into space.  They are called popunits.
+To  colonize  a  planet  simply  land (with the l command) popunits on
+planets  and  your  subjects  will  awake  and  start to build another
+outpost  for your empire.  When the population on a planet has reached
+its maximum, surplus population is automatically sent into popunits.
+
+k = Kill
+
+This  is  not  a  very  philantrophic(  or  philcreaturic) command but
+sometimes  necessary.   It  allows  you  to kill the population of any
+planet  you  control  if  the population happens to be of another race
+(when  you  have conquered and enslaved the population).  If you don't
+specify  the  planet  (i.e.you  hit  return)  and there is a ship with
+starkiller present, you destroy all planets and all taskforces there !
+Be careful !!
+
+j = Join taskforces
+
+With  this  command  you can join up to 30 taskforces.  End input with
+return.   All taskforces have to be at the same star.  If possible all
+taskforces are joined to one.
+
+l = Land taskforce
+
+With this command you can colonize other planets or supply planets you
+already  own  with  more population.  As many popunits as there are in
+the  taskforce  and  fit  on  the planet land.  This will increase the
+population  level  by this amount.  Then as many oreunits as there are
+in  the  taskforce  land  and increase the industry level.  (Providing
+that  wouldn't  raise  the  industry  level higher than the population
+level).
+
+n = New taskforce
+
+This command allows you split an existing taskforce into two.  You are
+prompted  for  the  number of ships of each type in the new taskforce.
+All carried ships in both taskforces are unloaded.
+
+d = Diplomatic declaration
+
+This  commands  sets your attitude towards the other players.  You can
+declare  WAR and this probably causes the other side to declare WAR on
+you  as  well as soon as it is its turn.  If you have declared war and
+your  taskforces meet they will fight.  You can make a PEACE offer and
+hope  that the other side will declare PEACE on you as well or you can
+offer  an ALLIANCE.  This ALLIANCE will be fulfilled by your side only
+until the other side declares ALLIANCE as well.
+
+p = Possess planet
+
+If  you  defeat  another  player and conquer one of his stars you will
+probably  wish  to use this command.  It allows you to take control of
+any  planet,  if  all the enemy taskforces have fled or were defeated.
+The  population of the planet will be enslaved.  It will always inform
+your  opponent  of  the  current state on this star.  You will also be
+unable  to  raise  popunits  from such a planet.  Thus you may wish to
+kill(= k) this population.  On the other hand, if you possess a planet
+of  a  culture with a higher techlevel your techlevel will increase as
+well.
+
+b = Build ship
+
+This useful command allows you to set the production on any planet you
+rule over.  You have several options:
+
+Any  kind  of ship that your techlevel allows you to build.To get this
+option  enter  the letter of this ship or select it the <,> and RETURN
+keys.
+
+RESEARCHING.   This  allows  you  to  increase  your techlevel.  Use a
+capital 'R' or select it with the <,> and RETURN keys.
+
+INVESTING.   This  option  allows you to increase the industry on this
+planet  ,but  it  is rather slow, thus use oreunits whenever possible.
+Use a capital 'I' or select it with the <,> and RETURN keys.
+
+MINING.   This  is  only  possible  on  a planet on that ore is found.
+These planets are displayed in inverse in the Starsummary.  When using
+this option your planet outputs oreunits.  Use a capital 'M' or select
+it with the <,> and RETURN keys.
+
+c=Carry ships
+
+This  command allows you to specify the number and type of ships being
+carried in a taskforce.  As the ships are taken apart before carrying,
+large  ships  can  be spread among many smaller ships.  Also note that
+the empty space inside the storage holds of large ships is used.  This
+means  4  glitter  with a size of 20 and a capacity of 19 each, can be
+stored  inside  one single transporter with a capacity of 4.  Carrying
+ships  can  have different reasons.  Some ships don't have hyperdrives
+or  only drives with insufficient range.  This means that they have to
+be  carried  by longer range ships on far distances.  Others are quite
+slow  and  fast  taskforces can be speeded up by faster ships carrying
+the slower ones.  Note also that ships stored inside other ships can't
+be  destroyed  in  battle,  even if their carriers are blown up.  They
+will  be  unloaded  and  undamaged  next  year.   This may be a way to
+protect  valuable  but  easily  destroyed  ships like space cannons or
+Q-bombs inside larger ships with better armor.
+
+HINTS
+
+The following hints may help you to play a better game against Klingon
+or another human player.
+
+1.   When  the  cluster  is  generated  you  always  get one populated
+mineable  planet  type 60 and one empty planet type 40.  There will be
+another  star  within  a  range  of  4 units.  There won't be an enemy
+nearer  than  8  units,thus  you  needn't  be  too  frightened  at the
+beginning.
+
+2.   Use cheap scouts to explore and on sentry duty to yet uncolonized
+stars.   Have  sentries  on all stars within 6 or 8 units of your main
+industrialized stars.  They won't stop an attacking enemy but you will
+get  advance  warning  to  prepare to defend.  Having one of your main
+stars  surprised  by  3  light cruisers, conquered, and all population
+killed when you bring in your taskforces is NOT the way to win.
+
+3.   How  fast  your population grows depends on the distance from the
+sun.   Planet 3 is rather ideal.  Planets farther in are progressively
+to hot to have a large birth rate and planets farther out are becoming
+colder  and  colder.   Build up your population in the middle planets.
+Planets 0 and 7 will never increase their population but always remain
+constant or even decrease.
+
+4.  Use glitter!  Glitter is very cheap and easily destroyed but has a
+large  size and many shots will be drawn away from your more important
+ships.   As  its  capacity  is  only one less than its size, it can be
+transported  effectively  at  the  cost  of  one unit .  Use clearers!
+These  ships  have  a quite good speed ,thus they will fire early in a
+battle.   They  have  many  attacks  but  each of them is pretty weak.
+Their  attacks  can  practically  only  penetrate ships without armor.
+They  are  the  ideal  counterweapon against glitter, as they clear it
+away ,before the other ships fire might be distracted.
+
+5.  Never use invest, if you have got ore available.
+
+6.  The most important ship to build, after having conquered all stars
+in  the  close  neighborhood,  is  the Trans II.  It is available at a
+techlevel  of 210 and allows you to expand across the gaps between the
+stars.
+
+7.  Never stop building a ship that is almost finished.  You will lose
+all efforts you put into it.
+
+8.   When  a planet has an industry level less than 5 and a population
+larger  than  its  industry  level, the industry level is automagicaly
+increased by 1 each turn.  This means that you can start a colony with
+popunits only, then wait for the industry to reach 5 and continue your
+growth  with  the  "Investing" command.  While this isn't very fast or
+efficient, it is a possibility.  When you have a shortage of ore units
+it might be useful not to land them immediately on a new planet but to
+wait 5 years until you have received all the "bonus" techlevels.
+
+TECHNICAL NOTES
+
+The  game  is  compiled using Manx Aztec C V3.6a.  Lattice and earlier
+versions  of  Manx  shouldn't work.  It can be completely rebuilt with
+the  supplied  makefile.   The  resulting executable might be slightly
+shorter  as  a secret debug mode has been removed from the source.  To
+add  more  computer  players feel free to modify the files "romulan.c"
+and  "alien.c".   To  see  how  a  simple  computer player is written,
+examine  the  "klingon.c"  file.   If  you  write  a clever or unusual
+computer player I'd be obliged, if you sent it to me for incorporation
+in  future  versions  of  "Cosmic  Conquest".  To add more ship types,
+modify the ships.h file.  If you invent good ones send them to me.
+
+The files:
+
+main.c - startup code
+
+defs.h - general defines for the game
+
+ships.h - description of ship types
+
+conquest.c  -  main  part  of the program for computation of moves and
+battles
+
+human.c - input/output routines for the human player
+
+klingon.c - klingon player
+
+romulan.c - romulan player (not completed)
+
+berserker.c - berserker player (not completed)
+
+alien.c - alien player (not completed)
+
+cosmic.doc - this text
+
+makefile - a makefile (you wouldn't have guessed that,would you ?)
+
+rev.o - external module containing the revision number
+
+increv - program to update rev.o
+
+Sorry,  there  are  very  few comments in the source.  But the code is
+obvious, isn't it ?!?
+
+DESIGN LIMITS
+
+Most  of  these  limits can be changed by changing the defs.h file and
+recompiling the game but old saved positions can't any longer be used.
+
+1. There  can  never  be  more than 250 free ships of one type and 250
+   carried  ships  of  one  type  in  one taskforce.  Additional ships
+   are ignored.
+
+2. There can never be more than 26 taskforces ( Some support for up to
+   52 taskforces is included.)
+
+3. There are only 16 stars.
+
+4. All other data are  short integers.  This means  values up to 32000
+   should be ok.
+
+THANKS AND APOLOGIES
+
+Thanks  to  Bob  Shimbo  for  the  original amiga port.  Although this
+source  is  completely independent, your program obviously inspired me
+very much.
+
+Thanks   to   Charlie  Heath  for  writing  the  editor  without  that
+programming  on  the amiga would be a nightmare(...well,almost).  BTW,
+ARP  is  the best thing that happened to the amiga since the invention
+of the coprocessor.
+
+Thanks to Manx for writing one of the most buggy professional compiler
+I've  seen  to date (except of course the earlier versions of Manx C).
+The  assembler  keeps  crashing  the  machine  without  any reason and
+generating  illegal  address  gurus in the executable.  (And don't ask
+about the sdb !!!).
+
+Note  to Chris Gray:  Received your "Empire" yesterday and noted a few
+similarities.   Any  resemblance  is  purely  coincidental.(Good  game
+anyway.   But please add support for the second terminal (I've got one
+,I have to use it) and pleeeeeease debug it thoroughly.  It just keeps
+guruing.)
+
+Thanx  to  Bryan Ford for the very useful as well as small increv.  It
+is  included  in  this  zoo-archive as is is needed to reconstruct the
+executable.
+
+If  you  have  got ideas or code for enhancements of the program, send
+them  to  me on a disk.  You will receive the newest version of Cosmic
+Conquest.  Maybe your enhancements will already be incorporated in the
+version you receive.  If you only wish to have the newest version send
+a  disk  to  me  as well, but please include the postage for the reply
+mail.
+
+Sorry  you can't reach me via any network but that's a problem here in
+Germany.  You can reach me via the german smail at this address:
+
+            Carl Edman
+            Pasteurstrasse 7
+            D-8033 Martinsried
+            Federal Republic of Germany
+
+                   Have fun,
+
+                      Carl Edman
