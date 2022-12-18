@@ -1,0 +1,13 @@
+{
+    "cmake.configureOnOpen": true,
+    "cmake.debugConfig": {
+        "cwd": "${workspaceFolder}"
+    },
+    "editor.formatOnSave": true,
+    "C_Cpp.clang_format_sortIncludes": true,
+    "C_Cpp.clang_format_path": "C:\\Program Files\\LLVM\\bin\\clang-format.exe",
+    "files.associations": {
+        "dos.h": "c",
+        "defs.h": "c",
+    }
+}
