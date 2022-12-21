@@ -21,6 +21,7 @@ void PrintIText(struct IntuiText *dt, int x, int y);
 size_t IntuiTextLength(struct IntuiText *dt);
 
 void cc_draw_mouse();
+void cc_puts(int x, int y, const char *str, int color);
 
 void platform_init();
 void platform_shutdown();

@@ -77,7 +77,7 @@ load(str) char *str;
   int pla, sta, tas;
   char fname[STRLENGTH + 10];
   if (*str == '\0') {
-    printf("Bad filename");
+    printf("Bad filename\n");
     return -1;
   }
   strncpy(fname, "games/", sizeof(fname));
@@ -85,6 +85,15 @@ load(str) char *str;
   FILE *file = fopen(fname, "rb");
   if (file == NULL)
     return (0);
+  // BEGIN evo - magic savegame header
+  char magic[4];
+  fread(magic, 1, sizeof(magic), file);
+  if (magic[0] != 'C' && magic[1] != 'C' && magic[2] != 'N' &&
+      magic[3] != 'Q') {
+    printf("Invalid savegame file. Magic does not match\n");
+    return -1;
+  }
+  // END evo
   fread(&general, sizeof(struct NGeneral), 1, file);
   for (sta = 0; sta < STARNO; sta++)
     fread(&star[sta], sizeof(struct NStar), 1, file);
@@ -102,7 +111,7 @@ save(str) char *str;
   int pla, sta, tas;
   char fname[STRLENGTH + 10];
   if (*str == '\0') {
-    printf("Bad filename");
+    printf("Bad filename\n");
     return 0;
   }
   strncpy(fname, "games/", sizeof(fname));
@@ -110,6 +119,10 @@ save(str) char *str;
   FILE *file = fopen(fname, "wb");
   if (file == NULL)
     return (0);
+  // BEGIN evo - magic savegame header
+  const char magic[4] = {'C', 'C', 'N', 'Q'};
+  fwrite(magic, 1, sizeof(magic), file);
+  // END evo
   fwrite(&general, sizeof(struct NGeneral), 1, file);
   for (sta = 0; sta < STARNO; sta++)
     fwrite(&star[sta], sizeof(struct NStar), 1, file);

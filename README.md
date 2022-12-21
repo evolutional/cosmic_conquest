@@ -124,7 +124,7 @@ Pop Unit | 1 | 0 | 0 | 0 | 10 | 0 | 0 | 0 | 20 | 0 | NOTPROD
 
 - The original game makes heavy use of string literal modification, which is undefined behaviour in most modern compilers (except MSVC). This has been corrected in the ported code.
 - The original code used `\n` and `\r` interchangably, which caused input issues in Linux. This has been standardized to `\n` in the port.
-- The load/save system uses direct memory saving/loading. This means that original save games are *not* compatible with this version. This is probably fixable relatively easily if anyone so wished.
+- The load/save system uses direct memory saving/loading. This means that original save games are *not* compatible with this version as the size of the integers have changed (the original was 16-bit) and you'd need to account for struct padding. This is probably fixable relatively easily if anyone so wished. To distinguish "new" savegames from the originals, I've added in a `CCNQ` magic marker into new savegames to make it easier to add in the future.
 - `dos-like` does not support displaying the pointer in fullscreen mode, to use the mouse, you must start in windowed mode (`-w` argument)
 - `dos-like` does not support custom pointer graphics, so at this time the original mouse pointer is not displayed
 - The code does not compile cleanly without warnings. Many of the issues are down to the old style of the code, such as functions not returning a value or the use of `long` numbers everywhere.
