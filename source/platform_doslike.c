@@ -103,7 +103,7 @@ size_t IntuiTextLength(struct IntuiText *dt) {
 }
 
 int clearall(int pla) {
-  register long i, j;
+  int i, j;
   if (!display_check(pla))
     return 0;
   fline = 0;
@@ -117,43 +117,62 @@ int clearall(int pla) {
   return 0;
 }
 
-int cget(int pla) {
-  while (1) {
-    const char *c = readchars();
-    if (*c) {
-      return *c;
+int _cc_keyget() {
+  int back = 0;
+  int ret = 0;
+
+  enum keycode_t *keys = readkeys();
+  while (*keys) {
+    enum keycode_t k = *keys;
+
+    if (k == KEY_RETURN) {
+      ret = 1;
+    } else if (k == KEY_BACK) {
+      back = 1;
     }
 
-    if (keystate(KEY_BACK))
-      return '\b';
+    ++keys;
+  }
 
-    if (keystate(KEY_RETURN))
-      return 0xD;
+  if (back)
+    return '\b';
 
+  if (ret)
+    return 0x0d;
+
+  const char *c = readchars();
+  if (*c && *c != '\r' && *c != '\n') {
+    return *c;
+  }
+  return 0;
+}
+
+int cget(int pla) {
+  while (1) {
+    waitvbl();
+
+    int c = _cc_keyget();
+    if (c) {
+      return c;
+    }
     if (keystate(KEY_LBUTTON)) {
       process_mouse(pla, (int)mousex() / 8, (int)mousey() / 8);
     }
     if (keystate(KEY_RBUTTON)) {
       showstatus(pla);
     }
-
-    waitvbl();
   }
   return 0;
 }
+
 int coget() {
   while (1) {
-    const char *c = readchars();
-    if (*c)
-      return *c;
-
-    if (keystate(KEY_BACK))
-      return '\b';
-
-    if (keystate(KEY_RETURN))
-      return 0xD;
-
     waitvbl();
+
+    int c = _cc_keyget();
+    if (c) {
+      return c;
+    }
   }
   return 0;
 }

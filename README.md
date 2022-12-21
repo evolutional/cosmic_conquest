@@ -31,6 +31,8 @@ As this game uses `dos-like`, you can toggle full-screen mode with `F11`. You ca
 
 The Amiga Intuition library functions `SetAPen`, `RectFill`, `PrintIText` and `IntuiTextLength` are still referenced in code but have been shimmed onto equivalent code in `dos-like`. Anything that hits any rendering/input has been moved into `platform.h` / `platform_doslike.c` to make targeting another framework easier.
 
+The original code made heavy use of in-place string literal modification. For all modern compilers other than MSVC this is undefined behaviour and resulted in a segfault. I've worked around this by making `DText.IText` a fixed-size buffer and then `strcpy` into it.
+
 ### Structure
 
 ```
@@ -50,6 +52,8 @@ The Amiga Intuition library functions `SetAPen`, `RectFill`, `PrintIText` and `I
 ### Building
 
 Clone the repo, fetch the submodules and build via `cmake`.
+
+To build on Linux/MacOS you will need to install [dos-like's dependencies](https://github.com/mattiasgustavsson/dos-like#linux).
 
 ## Game Information
 
@@ -114,12 +118,16 @@ Pop Unit | 1 | 0 | 0 | 0 | 10 | 0 | 0 | 0 | 20 | 0 | NOTPROD
 - Only the `klingon` race has any actual AI implemented
 - The `alien` and `romulan` races are implemented as a no-op, so they just sits there and mines their starting planet forever
 - The `beserker` race declares war on everyone but does nothing additional to the `alien`/`romulan` code
+- The source code and docs reference a `debug.c` (secret debug menu) which was not distributed with the source.
 
 ### Bugs / Problems
 
+- The original game makes heavy use of string literal modification, which is undefined behaviour in most modern compilers (except MSVC). This has been corrected in the ported code.
+- The original code used `\n` and `\r` interchangably, which caused input issues in Linux. This has been standardized to `\n` in the port.
 - The load/save system uses direct memory saving/loading. This means that original save games are *not* compatible with this version. This is probably fixable relatively easily if anyone so wished.
 - `dos-like` does not support displaying the pointer in fullscreen mode, to use the mouse, you must start in windowed mode (`-w` argument)
 - `dos-like` does not support custom pointer graphics, so at this time the original mouse pointer is not displayed
+- The code does not compile cleanly without warnings. Many of the issues are down to the old style of the code, such as functions not returning a value or the use of `long` numbers everywhere.
 
 ## Licenses
 

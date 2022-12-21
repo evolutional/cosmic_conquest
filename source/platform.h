@@ -10,10 +10,7 @@
 struct IntuiText {
   unsigned char FrontPen, BackPen;
   unsigned char DrawMode;
-  unsigned short LeftEdge, TopEdge;
-  void *ITextFont;
-  char *IText;
-  struct IntuiText *NextText;
+  char IText[128];
 };
 
 void SetAPen(int color);

@@ -9,7 +9,7 @@
 
 extern struct NShip ship[SHIPNO];
 
-struct IntuiText DText = {GREENPEN, BLACKPEN, JAM2, 0, 0, NULL, NULL, NULL};
+struct IntuiText DText = {GREENPEN, BLACKPEN, JAM2, {0}};
 
 int screen1, screen2;
 int show1, show2;
@@ -17,7 +17,6 @@ int showpla1, showpla2;
 int sort[STARNO], dis[STARNO], sortsta;
 
 int human(int pla) {
-  int i;
   struct NCommand c;
   c.com = DUMMY;
   screen1 = PLAYERSUMMARY;
@@ -154,7 +153,7 @@ int pla;
     SetAPen(BLACKPEN);
     RectFill(400L, 0L, 639L, 39L);
     DText.FrontPen = GREENPEN;
-    DText.IText = "SHOW  >Starsummary";
+    strcpy(DText.IText, "SHOW  >Starsummary");
     PrintIText(&DText, 400L, 8L * line);
     i = input_star_or_ret(1, pla);
     if (i == STARNO) {
@@ -176,7 +175,7 @@ int pla;
     SetAPen(BLACKPEN);
     RectFill(400L, 0L, 639L, 39L);
     DText.FrontPen = GREENPEN;
-    DText.IText = "SHOW  >Taskforcesummary";
+    strcpy(DText.IText, "SHOW  >Taskforcesummary");
     PrintIText(&DText, 400L, 8L * line);
     showpla2 = input_player_pref(1, pla);
     show2 = input_task_or_ret(2, pla);
@@ -189,7 +188,7 @@ int pla;
     SetAPen(BLACKPEN);
     RectFill(400L, 0L, 639L, 39L);
     DText.FrontPen = GREENPEN;
-    DText.IText = "SHOW  >Status";
+    strcpy(DText.IText, "SHOW  >Status");
     PrintIText(&DText, 400L, 8L * line);
     screen1 = PLAYERSUMMARY;
     return (DUMMY);
@@ -197,7 +196,7 @@ int pla;
     SetAPen(BLACKPEN);
     RectFill(400L, 0L, 639L, 39L);
     DText.FrontPen = GREENPEN;
-    DText.IText = "SHOW  >Shipsummary";
+    strcpy(DText.IText, "SHOW  >Shipsummary");
     PrintIText(&DText, 400L, 8L * line);
     showpla2 = input_player_or_ret(1, pla);
     show2 = input_ship(2, pla);
@@ -214,9 +213,9 @@ int pla;
   SetAPen(BLACKPEN);
   RectFill(400L, 0L, 639L, 39L);
   DText.FrontPen = GREENPEN;
-  DText.IText = "ACTION>";
+  strcpy(DText.IText, "ACTION>");
   PrintIText(&DText, 400L, 8L * line);
-  DText.IText = str;
+  strcpy(DText.IText, str);
   PrintIText(&DText, 456L, 8L * line);
   return (c);
 }
@@ -225,7 +224,7 @@ int pla;
 {
   int c, tas;
   DText.FrontPen = GREENPEN;
-  DText.IText = "TF    >";
+  strcpy(DText.IText, "TF    >");
   PrintIText(&DText, 400L, 8L * line);
   tas = TASKNO + 1;
   while (tas >= TASKNO) {
@@ -235,7 +234,7 @@ int pla;
     if (c >= 'A' && c <= 'Z')
       tas = c - 'A' + SECSET;
   }
-  DText.IText = " ";
+  strcpy(DText.IText, " ");
   DText.IText[0] = c;
   PrintIText(&DText, 456L, 8L * line);
   return (tas);
@@ -245,7 +244,7 @@ int pla;
 {
   int c, tas;
   DText.FrontPen = GREENPEN;
-  DText.IText = "TF    >";
+  strcpy(DText.IText, "TF    >");
   PrintIText(&DText, 400L, 8L * line);
   tas = TASKNO + 1;
   while (tas > TASKNO) {
@@ -259,7 +258,7 @@ int pla;
   }
   if (tas == TASKNO)
     return (TASKNO);
-  DText.IText = " ";
+  strcpy(DText.IText, " ");
   DText.IText[0] = c;
   PrintIText(&DText, 456L, 8L * line);
   return (tas);
@@ -277,7 +276,7 @@ struct NCommand *co;
     SetAPen(BLACKPEN);
     RectFill(400L, line * 8L, 639L, line * 8L + 15);
     SetAPen(GREENPEN);
-    DText.IText = ship[i].name;
+    strcpy(DText.IText, ship[i].name);
     PrintIText(&DText, 400L, line * 8L);
     co->par[i + 1] = input_number(line + 1, pla, INTASK(pla, tas, i));
   }
@@ -290,9 +289,9 @@ struct NCommand *co;
   int c, i;
   i = 0;
   DText.FrontPen = GREENPEN;
-  DText.IText = "TFS   >";
+  strcpy(DText.IText, "TFS   >");
   PrintIText(&DText, 400L, 8L * line);
-  DText.IText = " ";
+  strcpy(DText.IText, " ");
   while (1) {
     c = cget(pla);
     if (c == 0x0d) {
@@ -322,11 +321,11 @@ int pla;
 {
   int sta;
   DText.FrontPen = GREENPEN;
-  DText.IText = "STAR  >";
+  strcpy(DText.IText, "STAR  >");
   PrintIText(&DText, 400L, 8L * line);
   while ((sta = cget(pla) - 'a') < 0 || sta >= STARNO)
     ;
-  DText.IText = " ";
+  strcpy(DText.IText, " ");
   DText.IText[0] = sta + 'A';
   PrintIText(&DText, 456L, 8L * line);
   return (sta);
@@ -336,13 +335,13 @@ int pla;
 {
   int sta;
   DText.FrontPen = GREENPEN;
-  DText.IText = "STAR  >";
+  strcpy(DText.IText, "STAR  >");
   PrintIText(&DText, 400L, 8L * line);
   while (((sta = cget(pla) - 'a') < 0 || sta >= STARNO) && sta != 0x0d - 'a')
     ;
   if (sta == 0x0d - 'a')
     return (STARNO);
-  DText.IText = " ";
+  strcpy(DText.IText, " ");
   DText.IText[0] = sta + 'A';
   PrintIText(&DText, 456L, 8L * line);
   return (sta);
@@ -352,7 +351,7 @@ int pla;
 {
   int c, d = PLAYERNO;
   DText.FrontPen = GREENPEN;
-  DText.IText = "POWER >None";
+  strcpy(DText.IText, "POWER >None");
   PrintIText(&DText, 400L, 8L * line);
   while (1) {
     c = cget(pla);
@@ -371,11 +370,11 @@ int pla;
     SetAPen(GREENPEN);
     if (d < PLAYERNO) {
       DText.FrontPen = PLAYERPEN(d);
-      DText.IText = general.pname[d];
+      strcpy(DText.IText, general.pname[d]);
       PrintIText(&DText, 456L, 8L * line);
     } else {
       DText.FrontPen = GREENPEN;
-      DText.IText = "None";
+      strcpy(DText.IText, "None");
       PrintIText(&DText, 456L, 8L * line);
     }
     if (c == 0x0d) {
@@ -389,11 +388,11 @@ int pla;
 {
   int c;
   DText.FrontPen = GREENPEN;
-  DText.IText = "PLANET>";
+  strcpy(DText.IText, "PLANET>");
   PrintIText(&DText, 400L, 8L * line);
   while ((c = cget(pla)) < '0' || c > '9')
     ;
-  DText.IText = " ";
+  strcpy(DText.IText, " ");
   DText.IText[0] = c;
   PrintIText(&DText, 456L, 8L * line);
   return (c - '0');
@@ -403,13 +402,13 @@ int pla;
 {
   int c;
   DText.FrontPen = GREENPEN;
-  DText.IText = "PLANET>";
+  strcpy(DText.IText, "PLANET>");
   PrintIText(&DText, 400L, 8L * line);
   while (((c = cget(pla)) < '0' || c > '9') && c != 0x0d)
     ;
   if (c == 0x0d)
     return (PLANETNO);
-  DText.IText = " ";
+  strcpy(DText.IText, " ");
   DText.IText[0] = c;
   PrintIText(&DText, 456L, 8L * line);
   return (c - '0');
@@ -423,11 +422,11 @@ int tas;
   for (d = 0; d < SHIPNO; d++)
     if (INTASK(pla, tas, d))
       break;
-  DText.IText = "SHIP  >";
+  strcpy(DText.IText, "SHIP  >");
   PrintIText(&DText, 400L, 8L * line);
   if (d == SHIPNO)
     return (0);
-  DText.IText = ship[d].name;
+  strcpy(DText.IText, ship[d].name);
   PrintIText(&DText, 456L, 8L * line);
   while (1) {
     c = cget(pla);
@@ -454,7 +453,7 @@ int tas;
     SetAPen(BLACKPEN);
     RectFill(456L, line * 8L, 639L, line * 8L + 7L);
     SetAPen(GREENPEN);
-    DText.IText = ship[d].name;
+    strcpy(DText.IText, ship[d].name);
     PrintIText(&DText, 456L, 8L * line);
     if (c == 0x0d)
       return (d);
@@ -466,9 +465,9 @@ int tech;
 {
   int c, d = RESEARCHING, e;
   DText.FrontPen = GREENPEN;
-  DText.IText = "BUILD >";
+  strcpy(DText.IText, "BUILD >");
   PrintIText(&DText, 400L, 8L * line);
-  DText.IText = "Researching";
+  strcpy(DText.IText, "Researching");
   PrintIText(&DText, 456L, 8L * line);
   while (1) {
     c = cget(pla);
@@ -515,13 +514,13 @@ int tech;
     RectFill(456L, line * 8L, 639L, line * 8L + 7L);
     SetAPen(GREENPEN);
     if (d < SHIPNO && !(ship[d].special & NOTPROD))
-      DText.IText = ship[d].name;
+      strcpy(DText.IText, ship[d].name);
     if (d == RESEARCHING)
-      DText.IText = "Researching";
+      strcpy(DText.IText, "Researching");
     if (d == MINING)
-      DText.IText = "Mining";
+      strcpy(DText.IText, "Mining");
     if (d == INVESTING)
-      DText.IText = "Investing";
+      strcpy(DText.IText, "Investing");
     PrintIText(&DText, 456L, 8L * line);
     if (c == 0x0d)
       return (d);
@@ -532,9 +531,9 @@ int pla;
 {
   int c, d = SHIPNO - 1, e;
   DText.FrontPen = GREENPEN;
-  DText.IText = "SHIP  >";
+  strcpy(DText.IText, "SHIP  >");
   PrintIText(&DText, 400L, 8L * line);
-  DText.IText = ship[d].name;
+  strcpy(DText.IText, ship[d].name);
   PrintIText(&DText, 456L, 8L * line);
   while (1) {
     c = cget(pla);
@@ -559,7 +558,7 @@ int pla;
     SetAPen(BLACKPEN);
     RectFill(456L, line * 8L, 639L, line * 8L + 7L);
     SetAPen(GREENPEN);
-    DText.IText = ship[d].name;
+    strcpy(DText.IText, ship[d].name);
     PrintIText(&DText, 456L, 8L * line);
     if (c == 0x0d)
       return (d);
@@ -571,9 +570,9 @@ int status;
 {
   int c;
   DText.FrontPen = GREENPEN;
-  DText.IText = "STATUS>";
+  strcpy(DText.IText, "STATUS>");
   PrintIText(&DText, 400L, 8L * line);
-  DText.IText = "        ";
+  strcpy(DText.IText, "        ");
   pstr(status, DText.IText);
   PrintIText(&DText, 456L, 8L * line);
   while (1) {
@@ -606,12 +605,12 @@ int max;
 {
   int pos, c, d = 0;
   DText.FrontPen = GREENPEN;
-  DText.IText = "NUMBER>000(000)";
+  strcpy(DText.IText, "NUMBER>000(000)");
   mstr(max, DText.IText + 11);
   PrintIText(&DText, 400L, line * 8L);
   if (max <= 0)
     return (0);
-  DText.IText = "000";
+  strcpy(DText.IText, "000");
   while (1) {
     c = coget();
     if (c == '.' && d < max)
@@ -639,10 +638,10 @@ int pla;
   DText.FrontPen = GREENPEN;
   if (pla == 0)
     d++;
-  DText.IText = "POWER >";
+  strcpy(DText.IText, "POWER >");
   PrintIText(&DText, 400L, 8L * line);
   DText.FrontPen = PLAYERPEN(d);
-  DText.IText = general.pname[d];
+  strcpy(DText.IText, general.pname[d]);
   PrintIText(&DText, 456L, 8L * line);
   while (1) {
     c = cget(pla);
@@ -672,7 +671,7 @@ int pla;
     RectFill(456L, line * 8L, 639L, line * 8L + 7L);
     SetAPen(GREENPEN);
     DText.FrontPen = PLAYERPEN(d);
-    DText.IText = general.pname[d];
+    strcpy(DText.IText, general.pname[d]);
     PrintIText(&DText, 456L, 8L * line);
     if (c == 0x0d) {
       DText.FrontPen = GREENPEN;
@@ -686,10 +685,10 @@ int pla;
   int c, d;
   DText.FrontPen = GREENPEN;
   d = pla;
-  DText.IText = "POWER >";
+  strcpy(DText.IText, "POWER >");
   PrintIText(&DText, 400L, 8L * line);
   DText.FrontPen = PLAYERPEN(d);
-  DText.IText = general.pname[d];
+  strcpy(DText.IText, general.pname[d]);
   PrintIText(&DText, 456L, 8L * line);
   while (1) {
     c = cget(pla);
@@ -707,7 +706,7 @@ int pla;
     RectFill(456L, line * 8L, 639L, line * 8L + 7L);
     SetAPen(GREENPEN);
     DText.FrontPen = PLAYERPEN(d);
-    DText.IText = general.pname[d];
+    strcpy(DText.IText, general.pname[d]);
     PrintIText(&DText, 456L, 8L * line);
     if (c == 0x0d) {
       DText.FrontPen = GREENPEN;
@@ -727,15 +726,15 @@ char *str5;
   SetAPen(BLACKPEN);
   RectFill(400L, 0L, 639L, 39L);
   DText.FrontPen = GREENPEN;
-  DText.IText = str1;
+  strcpy(DText.IText, str1);
   PrintIText(&DText, 520L - IntuiTextLength(&DText) / 2, 0L);
-  DText.IText = str2;
+  strcpy(DText.IText, str2);
   PrintIText(&DText, 520L - IntuiTextLength(&DText) / 2, 8L);
-  DText.IText = str3;
+  strcpy(DText.IText, str3);
   PrintIText(&DText, 520L - IntuiTextLength(&DText) / 2, 16L);
-  DText.IText = str4;
+  strcpy(DText.IText, str4);
   PrintIText(&DText, 520L - IntuiTextLength(&DText) / 2, 24L);
-  DText.IText = str5;
+  strcpy(DText.IText, str5);
   PrintIText(&DText, 520L - IntuiTextLength(&DText) / 2, 32L);
 }
 nprint(pla, str) int pla;
@@ -745,7 +744,7 @@ char *str;
   if (!display_check(pla))
     return 0;
   DText.FrontPen = GREENPEN;
-  DText.IText = "                              ";
+  strcpy(DText.IText, "                              ");
   for (i = 0; str[i] != '\0'; i++)
     DText.IText[i] = str[i];
   for (; i < 30; i++)
@@ -762,13 +761,13 @@ wait_space(pla) {
   if (!display_check(pla))
     return 0;
   DText.FrontPen = GREENPEN;
-  DText.IText = "    PRESS SPACE TO CONTINUE   ";
+  strcpy(DText.IText, "    PRESS SPACE TO CONTINUE   ");
   DText.DrawMode = JAM2 | INVERSVID;
   PrintIText(&DText, 400L, 32L);
   while (coget() != ' ')
     ;
   DText.DrawMode = JAM2;
-  DText.IText = "                              ";
+  strcpy(DText.IText, "                              ");
   PrintIText(&DText, 400L, 32L);
 }
 cinput(str, line) char *str;
@@ -776,7 +775,7 @@ int line;
 {
   int pos, c;
   DText.FrontPen = GREENPEN;
-  DText.IText = ">                             ";
+  strcpy(DText.IText, ">                             ");
   PrintIText(&DText, 400L, line * 8L);
   pos = 0;
   *str = '\0';
@@ -791,7 +790,7 @@ int line;
       if (pos)
         pos--;
       str[pos] = '\0';
-      DText.IText = " ";
+      strcpy(DText.IText, " ");
       PrintIText(&DText, 408L + pos * 8, line * 8L);
       break;
     case 0x0d:
@@ -805,7 +804,7 @@ int line;
       str[pos] = c;
       pos++;
       str[pos] = '\0';
-      DText.IText = str;
+      strcpy(DText.IText, str);
       PrintIText(&DText, 408L, line * 8L);
     }
   }
@@ -816,7 +815,7 @@ mapdisplay(pla) int pla;
   if (!display_check(pla))
     return 0;
   for (sta = 0; sta < STARNO; sta++) {
-    DText.IText = " ";
+    strcpy(DText.IText, " ");
     DText.IText[0] = ('A' + sta);
     c = CommData[pla].star[sta].ruler;
     if (c < PLAYERNO)
@@ -830,12 +829,12 @@ mapdisplay(pla) int pla;
     else
       DText.DrawMode &= ~INVERSVID;
     PrintIText(&DText, 16L * star[sta].x, 8L * star[sta].y);
-    DText.IText = " ";
+    strcpy(DText.IText, " ");
     DText.DrawMode = JAM2;
     PrintIText(&DText, 16L * star[sta].x + 8L, 8L * star[sta].y);
     if (!knowstar(pla, sta))
       continue;
-    DText.IText = " ";
+    strcpy(DText.IText, " ");
     DText.DrawMode = JAM1;
     for (i = 0; i < PLAYERNO; i++) {
       DText.FrontPen = PLAYERPEN(i);
@@ -870,7 +869,7 @@ int sta;
     DText.FrontPen = OTHERPEN;
   if (CommData[pla].star[sta].when < 0 || pla2 == UNINHABITED)
     DText.FrontPen = WHITEPEN;
-  DText.IText = "Star %(%%,%%)                 ";
+  strcpy(DText.IText, "Star %(%%,%%)                 ");
   *(DText.IText + 5) = 'A' + sta;
   rstr(star[sta].x, DText.IText + 7);
   rstr(star[sta].y, DText.IText + 10);
@@ -887,7 +886,7 @@ int sta;
         DText.FrontPen = PLAYERPEN(star[sta].planet[p].ruler);
       else
         DText.FrontPen = WHITEPEN;
-      DText.IText = "%:%%%/%%%/%%%  ";
+      strcpy(DText.IText, "%:%%%/%%%/%%%  ");
       *(DText.IText + 0) = '0' + p;
       mstr(star[sta].planet[p].size, DText.IText + 2);
       mstr(star[sta].planet[p].industry, DText.IText + 10);
@@ -908,17 +907,17 @@ int sta;
         DText.FrontPen = PLAYERPEN(star[sta].planet[p].poptype);
       else
         DText.FrontPen = WHITEPEN;
-      DText.IText = "   ";
+      strcpy(DText.IText, "   ");
       mstr(star[sta].planet[p].population, DText.IText);
       PrintIText(&DText, 448L + 120 * (p % 2), 48L + 8 * ((int)p / 2));
       DText.DrawMode = JAM2;
     }
   for (pla2 = 0; pla2 < PLAYERNO; pla2++) {
     DText.DrawMode &= ~INVERSVID;
-    DText.IText = "Tf";
+    strcpy(DText.IText, "Tf");
     DText.FrontPen = PLAYERPEN(pla2);
     PrintIText(&DText, 400L, 80L + 8 * pla2);
-    DText.IText = " ";
+    strcpy(DText.IText, " ");
     for (tas = 0; tas < TASKNO; tas++)
       if (task[pla2][tas].headed == sta) {
         *DText.IText = TASKCHAR(tas);
@@ -932,7 +931,7 @@ int sta;
         PrintIText(&DText, 424L + tas * 8, 80L + 8 * pla2);
       }
   }
-  DText.IText = "%  ";
+  strcpy(DText.IText, "%  ");
   if (pla != PLAYERNO)
     for (sta2 = 1; sta2 < 8; sta2++) {
       DText.IText[0] = 'A' + sort[sta2];
@@ -974,9 +973,9 @@ int tas;
   show2 = tas;
   DText.FrontPen = PLAYERPEN(pla);
   if (task[pla][tas].arriving <= general.time) {
-    DText.IText = "Tf % at %    L:%%% S:%%% R:%%%";
+    strcpy(DText.IText, "Tf % at %    L:%%% S:%%% R:%%%");
   } else {
-    DText.IText = "Tf % vs %/%% L:%%% S:%%% R:%%%";
+    strcpy(DText.IText, "Tf % vs %/%% L:%%% S:%%% R:%%%");
     *(DText.IText + 10) = '0' + ((task[pla][tas].arriving - general.time) / 10);
     *(DText.IText + 11) = '0' + ((task[pla][tas].arriving - general.time) % 10);
   }
@@ -1008,15 +1007,15 @@ int tas;
       RectFill(400L, 128L, 639L, 199L);
       line = 1;
     }
-    DText.IText = ship[shi].name;
+    strcpy(DText.IText, ship[shi].name);
     PrintIText(&DText, 400L, 120L + line * 8);
     if (pla1 == pla || pla1 == mode) {
-      DText.IText = "   /   ";
+      strcpy(DText.IText, "   /   ");
       mstr(task[pla][tas].ship_free[shi], DText.IText);
       mstr(task[pla][tas].ship_load[shi], DText.IText + 4);
       PrintIText(&DText, 584L, 120L + line * 8);
     } else {
-      DText.IText = "   ";
+      strcpy(DText.IText, "   ");
       mstr(task[pla][tas].ship_free[shi], DText.IText);
       PrintIText(&DText, 616L, 120L + line * 8);
     }
@@ -1036,73 +1035,73 @@ int shi;
   RectFill(400L, 120L, 639L, 199L);
   DText.FrontPen = WHITEPEN;
   DText.DrawMode |= INVERSVID;
-  DText.IText = "                              ";
+  strcpy(DText.IText, "                              ");
   PrintIText(&DText, 400L, 120L);
-  DText.IText = ship[shi].name;
+  strcpy(DText.IText, ship[shi].name);
   PrintIText(&DText, 520L - IntuiTextLength(&DText) / 2, 120L);
   DText.DrawMode &= ~INVERSVID;
-  DText.IText = "Size      :000 Capacity  :000";
+  strcpy(DText.IText, "Size      :000 Capacity  :000");
   mstr(ship[shi].size, DText.IText + 11);
   mstr(ship[shi].capacity, DText.IText + 26);
   PrintIText(&DText, 400L, 128L);
-  DText.IText = "HyperSpeed:000 HyperRange:000";
+  strcpy(DText.IText, "HyperSpeed:000 HyperRange:000");
   mstr(ship[shi].hypspeed, DText.IText + 11);
   mstr(ship[shi].hyprange, DText.IText + 26);
   PrintIText(&DText, 400L, 136L);
-  DText.IText = "Attack    :000 No of At. :000";
+  strcpy(DText.IText, "Attack    :000 No of At. :000");
   mstr(ship[shi].attack, DText.IText + 11);
   mstr(ship[shi].attackno, DText.IText + 26);
   PrintIText(&DText, 400L, 144L);
-  DText.IText = "Speed     :000 Shields   :000";
+  strcpy(DText.IText, "Speed     :000 Shields   :000");
   mstr(ship[shi].speed, DText.IText + 11);
   mstr(ship[shi].shields, DText.IText + 26);
   PrintIText(&DText, 400L, 152L);
   if (!(ship[shi].special & NOTPROD)) {
     if (ship[shi].techlevel > general.techlevel[pla])
       DText.DrawMode |= INVERSVID;
-    DText.IText = "Techcost  :000 Techlevel :000";
+    strcpy(DText.IText, "Techcost  :000 Techlevel :000");
     PrintIText(&DText, 400L, 160L);
-    DText.IText = "   ";
+    strcpy(DText.IText, "   ");
     mstr(ship[shi].techcost, DText.IText);
     PrintIText(&DText, 488L, 160L);
     mstr(ship[shi].techlevel, DText.IText);
     PrintIText(&DText, 608L, 160L);
     DText.DrawMode &= ~INVERSVID;
   }
-  DText.IText = "Starkill ";
+  strcpy(DText.IText, "Starkill ");
   if (ship[shi].special & STARKILLER)
     PrintIText(&DText, 400L, 168L);
-  DText.IText = "One-Shot ";
+  strcpy(DText.IText, "One-Shot ");
   if (ship[shi].special & KAMIKAZE)
     PrintIText(&DText, 480L, 168L);
-  DText.IText = "Invisible";
+  strcpy(DText.IText, "Invisible");
   if (ship[shi].special & INVISIBLE)
     PrintIText(&DText, 560L, 168L);
-  DText.IText = "CataStart";
+  strcpy(DText.IText, "CataStart");
   if (ship[shi].special & FASTEJECTABLE)
     PrintIText(&DText, 400L, 176L);
-  DText.IText = "Not build";
+  strcpy(DText.IText, "Not build");
   if (ship[shi].special & NOTPROD)
     PrintIText(&DText, 480L, 176L);
-  DText.IText = "Theft    ";
+  strcpy(DText.IText, "Theft    ");
   if (ship[shi].special & STEAL)
     PrintIText(&DText, 560L, 176L);
-  DText.IText = "Catapult ";
+  strcpy(DText.IText, "Catapult ");
   if (ship[shi].special & FASTEJECTER)
     PrintIText(&DText, 400L, 184L);
-  DText.IText = "         ";
+  strcpy(DText.IText, "         ");
   if (ship[shi].special == 0)
     PrintIText(&DText, 480L, 184L);
-  DText.IText = "         ";
+  strcpy(DText.IText, "         ");
   if (ship[shi].special == 0)
     PrintIText(&DText, 560L, 184L);
-  DText.IText = "         ";
+  strcpy(DText.IText, "         ");
   if (ship[shi].special == 0)
     PrintIText(&DText, 400L, 192L);
-  DText.IText = "         ";
+  strcpy(DText.IText, "         ");
   if (ship[shi].special == 0)
     PrintIText(&DText, 480L, 192L);
-  DText.IText = "         ";
+  strcpy(DText.IText, "         ");
   if (ship[shi].special == 0)
     PrintIText(&DText, 560L, 192L);
   DText.FrontPen = GREENPEN;
@@ -1118,15 +1117,15 @@ showstatus(pla) int pla;
   RectFill(400L, 40L, 639L, 119L);
   DText.FrontPen = PLAYERPEN(pla);
   DText.DrawMode |= INVERSVID;
-  DText.IText = "                              ";
+  strcpy(DText.IText, "                              ");
   PrintIText(&DText, 400L, 40L);
-  DText.IText = "Year %%%%";
+  strcpy(DText.IText, "Year %%%%");
   qstr(general.time, DText.IText + 5);
   PrintIText(&DText, 520L - IntuiTextLength(&DText) / 2, 40L);
   DText.DrawMode &= ~INVERSVID;
-  DText.IText = general.pname[pla];
+  strcpy(DText.IText, general.pname[pla]);
   PrintIText(&DText, 520L - IntuiTextLength(&DText) / 2, 48L);
-  DText.IText = "Pop:0000 Ind:0000 Tec:0000";
+  strcpy(DText.IText, "Pop:0000 Ind:0000 Tec:0000");
   qstr(population_no(pla), DText.IText + 4);
   qstr(industry_no(pla), DText.IText + 13);
   qstr(general.techlevel[pla], DText.IText + 22);
@@ -1135,28 +1134,28 @@ showstatus(pla) int pla;
     if (i == pla)
       continue;
     DText.FrontPen = PLAYERPEN(i);
-    DText.IText = general.pname[i];
+    strcpy(DText.IText, general.pname[i]);
     PrintIText(&DText, 520L - IntuiTextLength(&DText) / 2,
                48L + (i + (i < pla)) * 16);
     if (!exists(i)) {
-      DText.IText = "Killed";
+      strcpy(DText.IText, "Killed");
       PrintIText(&DText, 520L - IntuiTextLength(&DText) / 2,
                  (i + (i < pla)) * 16 + 56L);
       continue;
     }
-    DText.IText = "--------/--------";
+    strcpy(DText.IText, "--------/--------");
     pstr(general.relation[pla][i], DText.IText);
     pstr(general.relation[i][pla], DText.IText + 9);
     PrintIText(&DText, 452L, (i + (i < pla)) * 16 + 56L);
-    DText.IText = "%:0000";
+    strcpy(DText.IText, "%:0000");
     if (pla == mode) {
-      *DText.IText = 'T';
+      *strcpy(DText.IText, 'T');
       qstr(general.techlevel[i], DText.IText + 2);
       PrintIText(&DText, 592L, (i + (i < pla)) * 16 + 56L);
-      *DText.IText = 'P';
+      *strcpy(DText.IText, 'P');
       qstr(population_no(i), DText.IText + 2);
       PrintIText(&DText, 400L, (i + (i < pla)) * 16 + 48L);
-      *DText.IText = 'I';
+      *strcpy(DText.IText, 'I');
       qstr(industry_no(i), DText.IText + 2);
       PrintIText(&DText, 592L, (i + (i < pla)) * 16 + 48L);
     }
@@ -1183,7 +1182,7 @@ rstr(no, str) int no;
 char *str;
 {
   if (no < 0)
-    return;
+    return 0;
   if (no < 100) {
     str[0] = '0' + (no / 10) % 10;
     str[1] = '0' + no % 10;
@@ -1215,7 +1214,7 @@ qstr(no, str) int no;
 char *str;
 {
   if (no < 0)
-    return;
+    return 0;
   if (no < 10000) {
     str[0] = '0' + (no / 1000) % 10;
     str[1] = '0' + (no / 100) % 10;
@@ -1281,11 +1280,11 @@ int pla;
   RectFill(400L, 120L, 639L, 127L);
   DText.FrontPen = PLAYERPEN(pla);
   DText.DrawMode |= INVERSVID;
-  DText.IText = "Taskforceoverview";
+  strcpy(DText.IText, "Taskforceoverview");
   PrintIText(&DText, 520L - IntuiTextLength(&DText) / 2, 120L);
   DText.DrawMode &= ~INVERSVID;
   DText.FrontPen = WHITEPEN;
-  DText.IText = "Tf % %/%%";
+  strcpy(DText.IText, "Tf % %/%%");
   for (i = 0; i < TASKNO; i++) {
     if (task[pla][i].headed == -1)
       continue;
@@ -1330,22 +1329,22 @@ char *str;
   }
   pos = 0;
   DText.FrontPen = PLAYERPEN(pla1);
-  DText.IText = ship[shi1].name;
+  strcpy(DText.IText, ship[shi1].name);
   PrintIText(&DText, pos, fline * 8L);
   pos += IntuiTextLength(&DText);
   DText.FrontPen = WHITEPEN;
-  DText.IText = " fires on ";
+  strcpy(DText.IText, " fires on ");
   PrintIText(&DText, pos, fline * 8L);
   pos += IntuiTextLength(&DText);
   DText.FrontPen = PLAYERPEN(pla2);
-  DText.IText = ship[shi2].name;
+  strcpy(DText.IText, ship[shi2].name);
   PrintIText(&DText, pos, fline * 8L);
   pos += IntuiTextLength(&DText);
   DText.FrontPen = WHITEPEN;
-  DText.IText = ":";
+  strcpy(DText.IText, ":");
   PrintIText(&DText, pos, fline * 8L);
   pos += IntuiTextLength(&DText);
-  DText.IText = str;
+  strcpy(DText.IText, str);
   PrintIText(&DText, pos, fline * 8L);
   pos += IntuiTextLength(&DText);
   DText.FrontPen = GREENPEN;
@@ -1370,12 +1369,12 @@ int shi;
   RectFill(400L, 120L, 639L, 127L);
   strcpy(name, "Shipoverview:");
   strcat(name, ship[shi].name);
-  DText.IText = name;
+  strcpy(DText.IText, name);
   PrintIText(&DText, 520L - IntuiTextLength(&DText) / 2, 120L);
   DText.DrawMode &= ~INVERSVID;
   DText.FrontPen = WHITEPEN;
   if (pla != pla1 && pla1 != mode) {
-    DText.IText = "Tf %  %%%";
+    strcpy(DText.IText, "Tf %  %%%");
     for (i = 0; i < TASKNO; i++)
       if (task[pla][i].headed != -1 && task[pla][i].arriving <= general.time &&
           knowstar(pla1, task[pla][i].headed) &&
@@ -1391,7 +1390,7 @@ int shi;
     DText.FrontPen = GREENPEN;
     return 0;
   }
-  DText.IText = "Tf% %%/%%";
+  strcpy(DText.IText, "Tf% %%/%%");
   for (i = 0; i < TASKNO; i++)
     if (task[pla][i].headed != -1 && INTASK(pla, i, shi)) {
       if (task[pla][i].arriving > general.time)
@@ -1413,15 +1412,15 @@ showhelp(pla) int pla;
   SetAPen(BLACKPEN);
   RectFill(400L, 0L, 639L, 39L);
   DText.FrontPen = GREENPEN;
-  DText.IText = "G=Go on        c=Carry Ships  ";
+  strcpy(DText.IText, "G=Go on        c=Carry Ships  ");
   PrintIText(&DText, 400L, 0L);
-  DText.IText = "h=Hyperspace   b=Build Ship   ";
+  strcpy(DText.IText, "h=Hyperspace   b=Build Ship   ");
   PrintIText(&DText, 400L, 8L);
-  DText.IText = "e=Emigrate     p=Possess Plan.";
+  strcpy(DText.IText, "e=Emigrate     p=Possess Plan.");
   PrintIText(&DText, 400L, 16L);
-  DText.IText = "k=Kill         d=Declaration  ";
+  strcpy(DText.IText, "k=Kill         d=Declaration  ");
   PrintIText(&DText, 400L, 24L);
-  DText.IText = "j=join Tf l=Land Tf n=Split Tf";
+  strcpy(DText.IText, "j=join Tf l=Land Tf n=Split Tf");
   PrintIText(&DText, 400L, 32L);
 }
 showstars(pla) int pla;
@@ -1436,11 +1435,11 @@ showstars(pla) int pla;
   RectFill(400L, 40L, 639L, 47L);
   DText.FrontPen = PLAYERPEN(pla);
   DText.DrawMode |= INVERSVID;
-  DText.IText = "Staroverview";
+  strcpy(DText.IText, "Staroverview");
   PrintIText(&DText, 520L - IntuiTextLength(&DText) / 2, 40L);
   DText.DrawMode &= ~INVERSVID;
   DText.FrontPen = WHITEPEN;
-  DText.IText = "% %%%/%%%/%%%";
+  strcpy(DText.IText, "% %%%/%%%/%%%");
   for (i = 0; i < STARNO; i++) {
     if (CommData[pla].star[i].ruler == PLAYERNO)
       continue;
@@ -1644,7 +1643,7 @@ int p;
   SetAPen((long)DText.FrontPen);
   RectFill(400L, 120L, 639L, 127L);
   DText.DrawMode |= INVERSVID;
-  DText.IText = "Star %(%%,%%)  Planet %       ";
+  strcpy(DText.IText, "Star %(%%,%%)  Planet %       ");
   DText.IText[5] = ('A' + sta);
   rstr(star[sta].x, DText.IText + 7);
   rstr(star[sta].y, DText.IText + 10);
@@ -1652,31 +1651,31 @@ int p;
   PrintIText(&DText, 400L, 120L);
   DText.DrawMode = JAM2;
   DText.FrontPen = WHITEPEN;
-  DText.IText = "Size        :%%%";
+  strcpy(DText.IText, "Size        :%%%");
   mstr(star[sta].planet[p].size, DText.IText + 13);
   PrintIText(&DText, 400L, 128L);
-  DText.IText = "Population  :%%%";
+  strcpy(DText.IText, "Population  :%%%");
   mstr(star[sta].planet[p].population, DText.IText + 13);
   PrintIText(&DText, 400L, 136L);
-  DText.IText = "Industry    :%%%";
+  strcpy(DText.IText, "Industry    :%%%");
   mstr(star[sta].planet[p].industry, DText.IText + 13);
   PrintIText(&DText, 400L, 144L);
-  DText.IText = "Building    :-";
+  strcpy(DText.IText, "Building    :-");
   PrintIText(&DText, 400L, 152L);
   if (star[sta].planet[p].producing < SHIPNO) {
-    DText.IText = ship[star[sta].planet[p].producing].name;
+    strcpy(DText.IText, ship[star[sta].planet[p].producing].name);
     cost = ship[star[sta].planet[p].producing].techcost;
   }
   if (star[sta].planet[p].producing == MINING) {
-    DText.IText = "MINING";
+    strcpy(DText.IText, "MINING");
     cost = MCOST;
   }
   if (star[sta].planet[p].producing == INVESTING) {
-    DText.IText = "INVESTING";
+    strcpy(DText.IText, "INVESTING");
     cost = ICOST;
   }
   if (star[sta].planet[p].producing == RESEARCHING) {
-    DText.IText = "RESEARCHING";
+    strcpy(DText.IText, "RESEARCHING");
     cost = RCOST;
   }
   if (star[sta].planet[p].producing == DO_NOTHING) {
@@ -1684,14 +1683,14 @@ int p;
     return 0;
   }
   PrintIText(&DText, 504L, 152L);
-  DText.IText = "Cost        :%%% per Unit";
+  strcpy(DText.IText, "Cost        :%%% per Unit");
   mstr(cost, DText.IText + 13);
   PrintIText(&DText, 400L, 160L);
-  DText.IText = "Average time:%%.%% Years";
+  strcpy(DText.IText, "Average time:%%.%% Years");
   rstr(cost / star[sta].planet[p].industry, DText.IText + 13);
   rstr(((cost * 100) / star[sta].planet[p].industry) % 100, DText.IText + 16);
   PrintIText(&DText, 400L, 168L);
-  DText.IText = "Available   :Year %%%% (Est.)";
+  strcpy(DText.IText, "Available   :Year %%%% (Est.)");
   qstr(general.time + (cost - star[sta].planet[p].ipoints +
                        star[sta].planet[p].industry - 1) /
                           star[sta].planet[p].industry,

@@ -22,7 +22,7 @@ int waittime = -1;
 
 conquest() {
   int pla, sta, x, y;
-  char *year = "Year 0000";
+  char year[] = "Year 0000";
   init();
   do {
     general.time++;
@@ -229,7 +229,7 @@ init() {
   return 0;
 }
 deinit() {
-  char *version = "V1.0000";
+  char version[] = "V1.0000";
   version[6] = '0' + Revision % 10;
   version[5] = '0' + (Revision / 10) % 10;
   version[4] = '0' + (Revision / 100) % 10;
