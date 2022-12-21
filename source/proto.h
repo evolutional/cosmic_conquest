@@ -1,6 +1,8 @@
 #ifndef _cc_proto_h_
 #define _cc_proto_h_
 
+#include "defs.h"
+
 /* alien.c */
 int alien(int pla);
 

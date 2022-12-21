@@ -78,7 +78,7 @@ load(str) char *str;
   char fname[STRLENGTH + 10];
   if (*str == '\0') {
     printf("Bad filename\n");
-    return -1;
+    return 0;
   }
   strncpy(fname, "games/", sizeof(fname));
   strncat(fname, str, sizeof(fname));
@@ -91,7 +91,7 @@ load(str) char *str;
   if (magic[0] != 'C' && magic[1] != 'C' && magic[2] != 'N' &&
       magic[3] != 'Q') {
     printf("Invalid savegame file. Magic does not match\n");
-    return -1;
+    return 0;
   }
   // END evo
   fread(&general, sizeof(struct NGeneral), 1, file);
@@ -143,6 +143,7 @@ init() {
   version[5] = '0' + (Revision / 10) % 10;
   version[4] = '0' + (Revision / 100) % 10;
   version[3] = '0' + (Revision / 1000) % 10;
+new_game:
   cprint(PLAYERNO, "COSMIC CONQUEST", version, "Placed in the PD",
          "by Carl Edman", "");
   wait_space(PLAYERNO);
@@ -236,6 +237,9 @@ init() {
     while (!load(filename)) {
       nprint(PLAYERNO, "Error loading file.");
       cinput(filename, 3);
+      if (strlen(filename) == 0) {
+        goto new_game; // evo: yes, sorry
+      }
     }
   }
   clearall(PLAYERNO);

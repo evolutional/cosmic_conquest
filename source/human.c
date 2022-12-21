@@ -1149,13 +1149,13 @@ showstatus(pla) int pla;
     PrintIText(&DText, 452L, (i + (i < pla)) * 16 + 56L);
     strcpy(DText.IText, "%:0000");
     if (pla == mode) {
-      *strcpy(DText.IText, 'T');
+      *DText.IText = 'T';
       qstr(general.techlevel[i], DText.IText + 2);
       PrintIText(&DText, 592L, (i + (i < pla)) * 16 + 56L);
-      *strcpy(DText.IText, 'P');
+      *DText.IText = 'P';
       qstr(population_no(i), DText.IText + 2);
       PrintIText(&DText, 400L, (i + (i < pla)) * 16 + 48L);
-      *strcpy(DText.IText, 'I');
+      *DText.IText = 'I';
       qstr(industry_no(i), DText.IText + 2);
       PrintIText(&DText, 592L, (i + (i < pla)) * 16 + 48L);
     }
