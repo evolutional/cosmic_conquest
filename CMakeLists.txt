@@ -4,6 +4,7 @@ project(cosmic_conquest VERSION 0.1.0)
 # include(CTest)
 # enable_testing()
 include_directories("external/dos-like/source")
+include_directories("external/ZX Eurostile")
 add_executable(cosmic_conquest
     source/platform_doslike.c
     source/main.c

@@ -130,14 +130,16 @@ Pop Unit | 1 | 0 | 0 | 0 | 10 | 0 | 0 | 0 | 20 | 0 | NOTPROD
 
 ### Building
 
-Clone the repo, fetch the submodules and build via `cmake`.
+Clone the [Github repo](https://github.com/evolutional/cosmic_conquest), fetch the submodules and build via `cmake`.
 
 To build on Linux/MacOS you will need to install [dos-like's dependencies](https://github.com/mattiasgustavsson/dos-like#linux).
 
 ## Licenses
 
+Cosmic Conquest was originally released into the Public Domain by Carl Edman; the ported code follows that same license.
+
 No additional licence or claim is asserted over any of the works here. All components are used under their respective licenses.
 
 The port uses [dos-like](https://github.com/mattiasgustavsson/dos-like) by Mattias Gustavsson for the main application framework. See the [original dos-like license](https://github.com/mattiasgustavsson/dos-like/blob/main/LICENSE) for details.
 
-The font used is [ZX Eurostile](https://damieng.com/typography/zx-origins/zx-eurostile/), which is part of the ZX Origins font collection Copyright (c) 1988-2022 Damien Guard.
+The font used is [ZX Eurostile](https://damieng.com/typography/zx-origins/zx-eurostile/), which is part of the ZX Origins font collection Copyright (c) 1988-2022 Damien Guard. See the [original README](external/ZX%20Eurostile/README.md) for details
